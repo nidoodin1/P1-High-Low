@@ -1,6 +1,5 @@
 import random
 
-
 class HighLow:
     """ROCK IT!!!"""
 
@@ -42,29 +41,43 @@ class HighLow:
 
         print("Welcome to Higher / Lower game!")
 
-        self.setdifficulty()
 
-        self.setrange()
+        while True:
 
-        self.secretNumber = random.randint(1, self.range)
+            self.setdifficulty()
 
-        while not self.guessed and self.tries > 0:
-            print("Try to guess the secret number...")
-            guess = int(input(f"You have {self.tries} more tries. What is your guess? "))
-            self.tries -= 1
+            self.setrange()
 
-            if guess < self.secretNumber and self.tries > 0:
-                print("Too low!")
-            elif guess > self.secretNumber and self.tries > 0:
-                print("Too high!")
+            self.secretNumber = random.randint(1, self.range)
+
+            while not self.guessed and self.tries > 0:
+                print("Try to guess the secret number...")
+                guess = int(input(f"You have {self.tries} more tries. What is your guess? "))
+
+                self.tries -= 1
+
+                if guess < self.secretNumber and self.tries > 0:
+                    print("Too low!")
+                elif guess > self.secretNumber and self.tries > 0:
+                    print("Too high!")
+                else:
+                    print("Correct!")
+                    self.guessed = True
+
+            if not self.guessed:
+                print(f"Game over! The secret number was {self.secretNumber}")
             else:
-                print("Correct!")
-                self.guessed = True
+                print("Congrats!")
 
-        if not self.guessed:
-            print(f"Game over! The secret number was {self.secretNumber}")
-        else:
-            print("Congrats!")
+                more = input("would you like to play again n/no")
+                if more == "n" or more == "N" or more == "no" or more == "NO":
+                    break
+
+                elif more == "y" or more == "Y" or more == "yes" or more == "YES":
+                    ask = input("would you like to keep the same settings")
+                    if ask == "y" or "yes" or "Y" or "YES":
+
+                        continue
 
 
 if __name__ == '__main__':
